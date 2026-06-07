@@ -1,25 +1,30 @@
 <script>
-    // class 부모 {
-
-    // }
-    // 부모.prototype.name = 'Park'
-
-    // var 오브젝트 = new 부모();
-    var 오브젝트 = { name: 'kim' }
-    Object.getOwnPropertyDescriptor(오브젝트, 'name') // 오브젝트의 숨겨진 내용 꺼내기
-
     for (let i = 0; i < 3; i++) { // 일반 반복문
 
     }
 
-    // [1, 2, 3].forEach() // Array전용
+    // [1, 2, 3].forEach() // Array전용은 forEach()
 
+    // for ~ in 반복문
     for (var key in 오브젝트) { // obj 전용 // obj에 있는 값을 하나씩 꺼내 사용
         if (오브젝트.hasOwnProperty(key)) { // 자기가 직접 가지고 있는 값만 출력하고싶다면 hasOwnProperty()를 넣어야함
             console.log(오브젝트[key])  // key = name > 오브젝트.name 과 같음
         }
     } // enumerable(셀 수 있는지 여부) 한 것만 반복해줌 // 부모의 프로토타입도 반복해줌
 
+    const A = {
+        a: 1,
+        b: 2
+    }
+
+    for (var key in A) {
+        if (A.hasOwnProperty(key)) {
+            console.log(key) // a, b
+            console.log(A[key]) // 1, 2
+        }
+    }
+
+    // for ~ of 반복문
     var 어레이 = [2, 3, 4, 5]
 
     for (var 작명 of 어레이) { // iterable 전용
@@ -28,10 +33,10 @@
 
     let 데이터 = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
-    for (var 곱하기 of 데이터) {
+    for (var 데이터안의각값 of 데이터) {
         for (let i = 1; i < 10; i++) {
-            결과 = 곱하기 * i;
-            console.log(곱하기 + 'x' + i + '=' + 결과)
+            결과 = 데이터안의각값 * i;
+            console.log(데이터안의각값 + 'x' + i + '=' + 결과) // 1 ~ 9 까지의 구구단 출력
         }
     }
 
@@ -52,9 +57,12 @@
     for (let item of products) {
         for (let key in item) {
             if (isNaN(parseInt(key.slice(-1))) == false) {
-                let newKey = key.slice(0, -1);
-                item[newKey] = item[key];
-                delete item[key]
+                // isNaN() = 숫자인지 확인해주는 함수(너 숫자 아니니? => 숫자가 아니면 true)
+                // parseInt() = 가져온 값을 숫자로 바꿔봄(숫자면 true)
+                // slice() 괄호 안의 값의 위치에 있는 값을 가져옴 -1 = 마지막글자
+                let newKey = key.slice(0, -1); // slice(0, -1) 0 에서부터 -1자리전에 있는 값을 가져옴 = 시작부터 맨 뒤에있는 글자 전까지
+                item[newKey] = item[key]; // newKey의 값에 기존 값을 넣음 name:"" => name:"chair"
+                delete item[key] // 기존 키 삭제 // delete가 속성 이름을 보고 그 속성을 제거하는 함수라 item[key]는 오브젝트의 첫번째 값을 가리킴
             }
         }
     }
