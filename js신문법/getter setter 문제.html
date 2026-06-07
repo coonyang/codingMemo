@@ -1,0 +1,69 @@
+<script>
+    class 강아지 {
+        constructor(a, b) {
+            this.type = a
+            this.color = b
+        }
+        nextAge() {
+            if (this instanceof 고양이) { // 부모가 고양이 일 경우 true
+                return this.age + 1
+            }
+        }
+    }
+
+    class 고양이 extends 강아지 {
+        constructor(a, b, c) {
+            super(a, b)
+            this.age = c
+        }
+    }
+
+    var 강아지1 = new 강아지('말티즈', 'white');
+    var 강아지2 = new 강아지('진돗개', 'brown');
+
+    console.log(강아지1)
+    console.log(강아지1.nextAge())
+
+    var 고양이1 = new 고양이('코숏', 'white', 5)
+
+    console.log(고양이1)
+    console.log(고양이1.nextAge())
+
+    class Unit {
+        constructor() {
+            this.체력 = 100
+            this.공격력 = 5
+        }
+        get battlePoint() {
+            return this.체력 + this.공격력
+        }
+        set heal(a) {
+            this.체력 = this.체력 + a
+        }
+    }
+
+    var data = {
+        odd: [],
+        even: [],
+        홀짝구분: function (...a) {
+            a.forEach((e) => {
+                if (e % 2 == 0) {
+                    this.even.push(e);
+                } else {
+                    this.odd.push(e)
+                }
+            })
+        },
+        정렬: function (...a) {
+            a.sort((a, b) => a - b).forEach((e) => {
+                console.log(e)
+            })
+
+        }
+    }
+
+    data.홀짝구분(1, 2, 3)
+    console.log(data.even)
+    console.log(data.odd)
+    data.정렬(1, 5, 3, 2)
+</script>

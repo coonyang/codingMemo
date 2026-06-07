@@ -1,0 +1,39 @@
+<script>
+
+    // Primitive data type (문자, 숫자) : 변수에 값이 그대로 저장됨
+    var 변수 = 'dddd'
+    // Reference data type : Array, Object는 변수에 값이 저장이 안됨
+    var 어레이 = [1, 2, 3]
+    var obj = { name: 'kim' }
+
+    // Primitive data type 다루기 : 복사
+    // 직접적으로 변수가 바뀌기 때문에 이름2 가 김으로 나옴
+    var 이름1 = '김';
+    var 이름2 = 이름1; // 이름2 = 김
+    이름1 = '박' // 이름1 = 박
+
+    // Reference data type 다루기 : 복사
+    // 변수를 화살표로 가리키기 때문에 name1의 화살표를 복사해 name2 가 박 으로 나옴
+    var name1 = { name: '김' };
+    var name2 = name1; // name2 = 박
+    name1.name = '박' // name1 = 박
+
+    var obj1 = { name: '김' }
+    var obj2 = { name: '김' }
+    obj1 == obj2 // false : 각각 다른 자료를 가리키는 화살표기 때문에 false가 나옴
+
+    // 파라미터는 변수생성&할당 과 같음
+    var obj3 = { name: '김' }
+    function 변경(obj) {
+        obj.name = "Park"
+    }
+    변경(obj3); // {name: 'Park'}
+
+    var obj4 = { name: '김' }
+    function 변경(obj) {
+        obj = { name: 'Park' }
+        console.log(obj) // {name: 'Park'}
+    }
+    변경(obj4);
+    console.log(obj4)  // {name: '김'}
+</script>

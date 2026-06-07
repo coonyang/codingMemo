@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 300px;
+            height: 300px;
+            border: 3px solid black;
+        }
+
+        .dragging {
+            opacity: 0.5;
+        }
+
+        .container {
+            width: 200px;
+            height: 200px;
+            border: 3px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="item" draggable="true">
+            <p style="font-size: 30px;">모작</p>
+        </div>
+    </div>
+    <div class="place">
+        <p style="font-size: 30px;">신창섭</p>
+    </div>
+    <div class="container">
+        <button class="draggable" draggable="true">🦊</button>
+        <button class="draggable" draggable="true">🐸</button>
+    </div>
+    <div class="container">
+        <button class="draggable" draggable="true">🐶</button>
+        <button class="draggable" draggable="true">🐱</button>
+    </div>
+
+
+    <script>
+
+        const item = document.querySelector('.item');
+
+        // item.addEventListener("dragstart", (e) => {
+        //     console.log(e)
+        //     console.log("드래그 시작시 나오는 이벤트")
+        // })
+
+        // item.addEventListener("drag", (e) => {
+        //     console.log(e)
+        //     console.log('드래그중 발생하는 이벤트')
+        // })
+
+        const place = document.querySelector('.place')
+
+        // place.addEventListener('dragenter', (e) => {
+        //     console.log(e)
+        //     console.log("드래그 한 요소가 이 영역에 닿을때 나오는 이벤트")
+        // })
+
+        // place.addEventListener("dragover", (e) => {
+        //     console.log(e)
+        //     console.log('드래그 한 요소가 이 영역 위에 계속 위치할때 나오는 이벤트')
+        // })
+
+        const box = document.querySelector('.box');
+
+        // box.addEventListener('dragenter', (e) => {
+        //     e.preventDefault();
+        //     console.log(e)
+        //     console.log("드래그 한 요소가 첫 번째 박스 영역에 최초로 진입했을때 나오는 이벤트")
+        // })
+        // box.addEventListener('dragleave', (e) => {
+        //     e.preventDefault()
+        //     console.log(e)
+        //     console.log("드래그 한 요소가 첫 번째 박스 영역을 떠나면 발생하는 이벤트")
+        // })
+
+        // place.addEventListener('dragenter', (e) => {
+        //     e.preventDefault();
+        //     console.log(e)
+        //     console.log("드래그 한 요소가 두 번째 박스 영역에 최초로 진입했을때 나오는 이벤트")
+        // })
+        // place.addEventListener('dragleave', (e) => {
+        //     e.preventDefault()
+        //     console.log(e)
+        //     console.log("드래그 한 요소가 드 번째 박스 영역을 떠나면 나오는 이벤트")
+        // })
+
+
+
+        // 드래그 시작 이벤트에서 처음 드래그한 녀석의 정보를 뽑아냄
+        item.addEventListener('dragstart', (e) => {
+            e.dataTransfer.setData('data', this.innerHTML);
+        })
+        // 드롭 이벤트가 발생하기 위해선 드래그 오버 이벤트가 앞서 있어야함
+        place.addEventListener('dragover', (e) => {
+            e.preventDefault()
+        })
+        // 이 영역 안으로 드롭 했을때 이벤트를 연결
+        place.addEventListener("drop", (e) => {
+            e.preventDefault();
+            console.log("드래그 요소가 두 번째 박스 영역에 드롭")
+        })
+
+        // item.addEventListener('dragend', (e) => {
+        //     console.log("드래그가 끝나면 발생하는 이벤트")
+        // })
+
+
+        // 요소끼리 드래그로 위치바꾸기
+        const draggables = document.querySelectorAll('.draggable');
+        const containers = document.querySelectorAll('.container');
+
+        // 드래그를 시작하면 draggind 이란 클래스를 추가 및 드래그가끝났을때 제거
+        draggables.forEach((a, i) => {
+            a.addEventListener('dragstart', () => {
+                a.classList.add('dragging')
+            })
+            a.addEventListener('dragend', () => {
+                a.classList.remove('dragging')
+            })
+        })
+
+        // 드래그 중인 요소를 마우스 위치에 맞게 삽임
+        containers.forEach((a, i) => {
+            a.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                // e.clientX = 현재 마우스 x 좌표
+                // draggable 은 현재 드래그 하고 있는 요소 afterElement 는 드래그 하고 있는 요소 뒤에 올 요소
+                // a = container 즉 컨테이너 안의 마우스 x 좌표 기준
+                const afterElement = getDragAfterElement(a, e.clientX);
+                const draggable = document.querySelector('.dragging');
+                // 현재 드래그 한 요소 뒤에 아무것도 없다면 제일 마지막 순서로 배치
+                if (afterElement == undefined) {
+                    a.appendChild(draggable);
+                    // 누가 뒤에 있다면 앞에다 배치
+                } else {
+                    a.insertBefore(draggable, afterElement)
+                }
+            })
+        })
+
+        // 현재 마우스가 위치한 container의 x좌표
+        // 마우스 위치를 기준으로 드래그중인 요소를 어디에 넣을지 찾아주는 함수
+        function getDragAfterElement(container, x) {
+            // 드래그 중인 요소 제외 나머지 요소들 찾기
+            // ... = 스프레드 연산자로 배열이 아닌 요소를 배열처럼 다룰수 있게 해줌
+            const draggableElements = [
+                ...container.querySelectorAll('.draggable:not(.dragging)'),
+            ];
+
+            // 가장 가까운 위치 찾기(reduce)
+            return draggableElements.reduce(
+                // closest = reduce의 최종 값
+                // child = 현재 순회중인 각각의 요소
+                (closest, child) => {
+                    // getBoundingClientRect = 요소의 크기와 위치를 반환
+                    const box = child.getBoundingClientRect();
+                    // 마우스 현재 위치 - 박스 왼쪽 좌표 - 버튼의 가운데 / 2
+                    // 마우스가 버튼의 중앙보다 어디로 치우쳐있는지 계산
+                    const offset = x - box.left - box.width / 2;
+
+                    if (offset < 0 && offset > closest.offset) {
+                        return { offset: offset, element: child };
+                    } else {
+                        return closest;
+                    }
+                },
+                // 비교기준을 설정하는 초기값
+                { offset: Number.NEGATIVE_INFINITY }
+                // 최종적으로 찾은 가장 적절한 요소를 반환해주는 함수
+            ).element;
+        }
+    </script>
+</body>
+
+</html>

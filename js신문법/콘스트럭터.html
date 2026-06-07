@@ -1,0 +1,20 @@
+<script>
+    // constructor : 비슷한 obj 복사할 때 사용
+    var 학생1 = { name: 'Kim', age: 15 }
+    var 학생2 = { name: 'Lee', age: 15 }
+
+    function 복사기계(a, b) {
+        this.name = a
+        this.age = b
+        this.sayHi = function () { console.log('안녕하세요' + this.name) }
+    }
+
+    // constructor 에서 생성된 obj는 instance 라고 부름
+    // 기계로부터 새로운 오브젝트를 뽑아주세요 = new
+    var 학생3 = new 복사기계('Kim', 15)
+    var 학생4 = new 복사기계('Park', 16)
+    console.log(학생3)
+    학생3.sayHi()
+
+
+</script>

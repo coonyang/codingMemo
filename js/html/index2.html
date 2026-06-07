@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="../css/index.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- UI 만드는 step
+    1.html/css로 미리 디자인(필요하면 숨김)
+    2.필요할때 디자인한걸 보여달라고 코드짬(js) -->
+    <div class="alert-box" id="alert">알림창임<button onclick="알림창('none')">닫기</button></div>
+    <button onclick="알림창('block')">버튼</button>
+    <!-- 스크립트는 아래에 위치해야 잘됨 -->
+    <script>
+
+        // function 작명(구멍){ 코드 } <function(함수)> > 긴 코드 축약하고싶을때 씀
+        // 작명을 영어로하고싶으면 소문자로 시작해야하고 여러단어면 띄어쓰기대신 대문자를 사용함
+        // function 작명('안녕' 문자를 표현하고싶으면 '' 안에 숫자는 그냥써도댐) {
+        //     document.getElementById('??').?? = '구멍'
+        // } > 구멍 자리에 안녕 을 넣어서 실행하라는 뜻
+        function 알림창(a) {
+            document.getElementById('alert').style.display = a;
+        }
+        // function 알림창열기() {
+        //     document.getElementById('alert').style.display = 'block'
+        // }
+        // 오류는 크롬 개발자도구 콘솔 가서 찾아보면 쉬움
+
+        // function plus(구멍, 구멍2) {
+        //     2 + 구멍 + 구멍2
+        // }
+
+        // plus(1, 2); > 2 + 1 + 2
+        // document.getElementById(구멍).style.display = 구멍2 ; 도가능
+    </script>
+</body>
+
+</html>

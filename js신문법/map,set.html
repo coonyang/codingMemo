@@ -1,0 +1,38 @@
+<script>
+
+    // key, value 를 저장하는 map
+    // map 자료형은 자료간의 연관성을 표현하기 위해 씀
+    // obj 자료형은 자료이름으로 글자만 가능하지만 map 은 다 가능함
+    var person = new Map();
+    person.set('name', 'Kim');
+    person.set('age', 20)
+    person.set(100, 100)
+
+    console.log(person)
+    console.log(person.get('age')) // map 에서 자료 꺼내는 법
+    // person.delete(100) // 자료 삭제하는 법
+    // person.size // 자료 갯수 세는 법
+
+    // 반복문에서 map자료꺼내는법
+    for (let key of person.keys()) {
+        console.log(key)
+    }
+
+    // 자료 직접 넣는법
+    var 직접넣기 = new Map([
+        ['name', 'kim'], ['age', 30]
+    ])
+
+    // 중복 자료를 허용하지 않는 set자료형
+    var 출석부 = new Set(['kim', 'park', 'lee', 'kim'])
+
+    console.log(출석부)
+
+    출석부.add('내용') // 자료추가하는법
+    출석부.delete('내용') // 자료삭제하는법
+    출석부.has('내용') // 내용이 있나 없나 확인해줌
+    출석부.size // 몇개인지 확인 ( 중복값은 하나만 셈 )
+
+    var 출석부2 = [...출석부]; // set 자료형을 array로 다시 바꾸는법 // 어레이의 중복자료 제거 편하게 하는법
+
+</script>

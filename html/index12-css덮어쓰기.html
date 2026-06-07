@@ -1,0 +1,27 @@
+<!-- 1. 같은 클래스명 하단에 쓰기 > 같은 class 면 아래가 우선순위로 적용됨
+2. 우선순위 높이기 > class 보다 우선순위인 id, !important 적용 ( 비추 )
+3. specificity 높이기 > .main-backround .main-h {} 이렇게 클래스명을 2개 적으면 점수가 높아짐 -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="css/기존파일.css" rel="stylesheet">
+    <!-- 여기도 아래있는게 더 우선순위 media 도 아래에 적는 이유 -->
+    <link href="css/덮어쓰기파일.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="main-background">
+        <h4 class="main-h">AAA</h4>
+    </div>
+</body>
+
+</html>
+<!-- 
+좋은 코드
+1. 나중에 수정/관리 쉬운 코드
+2. 확장성(재활용)이 좋은 코드
+3. bootstrap은 덮어쓰는게 아닌 옆에 클래스 추가하면됨 -->

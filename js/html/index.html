@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <h1 id="hello">안녕하세요</h1>
+    <h1 id="hi">JS 초보에요</h1>
+    <script>
+        // 문서 의 html 요소를 가져와라 id가 hello인 html안의 > html 안의 id가 hello인 요소를 가져와서 안녕으로 바꿔라 
+        document.getElementById('hello').innerHTML = '안녕';
+        // ??만 잘 바꾸면 다른 스타일도 다 바꿀수 있음
+        // document.getElementById('??').?? = '??';
+        document.getElementById('hi').style.fontSize = '16px';
+    </script>
+
+</body>
+
+</html>

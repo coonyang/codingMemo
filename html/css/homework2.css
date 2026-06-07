@@ -1,0 +1,59 @@
+.main {
+  background-color: antiquewhite;
+  width: 400px;
+  height: 500px;
+  padding: 1px;
+}
+
+.A {
+  margin-left: 40px;
+}
+
+.P {
+  margin-bottom: 5px;
+}
+
+input {
+  border-radius: 5px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: chocolate;
+}
+
+input[type="email"] {
+  width: 300px;
+  height: 30px;
+}
+
+.text {
+  width: 140px;
+  height: 30px;
+}
+
+.message {
+  width: 300px;
+  height: 120px;
+}
+
+.box {
+  margin-top: 30px;
+  float: left;
+}
+
+.B {
+  float: left;
+  margin-top: 27px;
+  margin-left: 3px;
+}
+
+.C {
+  width: 100px;
+  height: 30px;
+  border-width: 0px;
+  background-color: burlywood;
+  border-radius: 5px;
+  color: aliceblue;
+  position: relative;
+  left: 126px;
+  top: 20px;
+}

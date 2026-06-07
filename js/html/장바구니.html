@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+
+<body>
+    <div>장바구니 페이지</div>
+    <div class="carta"></div>
+
+    <script>
+        // 스토리지 내용을 cart 에 저장
+        var cart = JSON.parse(localStorage.getItem('cart'));
+        // 스토리지 내용을 하나 하나 다 꺼내줌
+        cart.forEach((item) => {
+            $('.carta').append(`<p>${item.title} : ${item.price} (${item.num}개)</p>`)
+        });
+
+    </script>
+</body>
+
+</html>

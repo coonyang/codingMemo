@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <label>제목</label>
+    <input type="range">
+
+    <div id="mordor"></div>
+    <custom-input></custom-input>
+
+    <template id='template1'> <!-- 임시 html 태그 보관함 -->
+        <label>아이디입력 </label><input>
+        <style>
+            label {
+                color: red
+            }
+        </style>
+        <!-- 스타일 주는법 : 섀도우 돔 안에 넣어야 다른 라벨태그에 오염이 안됨 -->
+    </template>
+
+    <script>
+        document.querySelector('#mordor').attachShadow({ mode: 'open' }) // 섀도우 돔 열어주는 함수
+        document.querySelector('#mordor').shadowRoot.innerHTML = `<p>심연</p>`
+
+        class 클래스 extends HTMLElement {
+            connectedCallback() {
+                let name = this.getAttribute('name');
+                this.attachShadow({ mode: 'open' })
+                this.shadowRoot.append(template1.content.cloneNode(true))
+
+                let 라벨 = this.shadowRoot.querySelector('label')
+                라벨.addEventListener('click', function () {
+                    console.log('클릭')
+                })
+            }
+        }
+        customElements.define('custom-input', 클래스);
+    </script>
+
+
+</body>
+
+</html>

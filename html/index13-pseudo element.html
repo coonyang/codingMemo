@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- pseudo class = :hover 같이 어떤 상태일때 클래스를 주는것
+pseudo-element = 내부의 일부분만 스타일을 줌 :pseudo class와 구분하기 위해 ::2개를 씀 -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="css/index13.css" rel="stylesheet">
+</head>
+
+<body>
+    <div>
+        <p class="pseudo">모작은 쌀숭이 이다</p>
+    </div>
+    <!-- 인풋에 스타일을 줄때 필요 (그냥 스타일 주면 안먹음) -->
+    <input type="file" class="input-file">
+
+    <!-- css열기 귀찮을때 스타일 열기 -->
+    <!-- css에 한것처럼 넣어도 적용됨 -->
+    <style>
+        /* -webkit = 크롬 사파리 edge에만 적용되는 스타일 */
+        /* 개발자도구 열어서 가져옴 = -webkit-file-upload-button */
+        input[type=file]::-webkit-file-upload-button {
+            background-color: salmon;
+        }
+    </style>
+    <!-- 섀도우 돔 = 개발자 편하게 해주려고 정해진 코드에 알아서 코드를 짜줌 
+     아래꺼는 자동으로 디브박스 2개가 생성됨
+     완전 모든 스타일을 바꾸고싶으면 appearance: none을 적용해야 브라우저 기본 css가 적용이 안됨-->
+    <input placeholder="안녕하세요">
+
+
+    <progress value="0.5"></progress>
+    <style>
+        progress {
+            appearance: none;
+        }
+
+        progress::-webkit-progress-bar {
+            background-color: red;
+            border-radius: 10px;
+        }
+
+        progress::-webkit-progress-value {
+            background-color: blue;
+            border-radius: 10px;
+        }
+    </style>
+</body>
+
+</html>

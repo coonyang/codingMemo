@@ -1,0 +1,16 @@
+.alert-box {
+  background-color: skyblue;
+  padding: 20px;
+  color: white;
+  border-radius: 5px;
+  /* ui숨기는법 보여주는건 display block 주면댐 */
+  display: none;
+}
+
+.list-group {
+  display: none;
+}
+
+.show {
+  display: block;
+}

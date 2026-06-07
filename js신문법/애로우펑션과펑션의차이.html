@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // 함수를 만들때
+    // 1. 코드들을 기능으로 묶고 싶을때
+    // 2. 입출력 기계를 만들고 싶을때
+
+    // 애로우펑션의 장점
+    // 1. 입출력기계를 만들때 보기쉬움
+    // 2. 파라미터가 하나밖에 없을때 소괄호 생략가능
+    // 3. 코드 한줄이면 중괄호 및 return도 생략가능
+    var 함수 = a => a + 10
+    var 함수2 = (a, b) => a + b
+    var 함수3 = (a, b) => {
+        let c = a + b
+        return console.log(c)
+    }
+
+    console.log(함수(5));
+
+    [1, 2, 3, 4].forEach(a => console.log(a))
+
+    // 애로우 펑션 안에서 디스를 쓰면 상위개체가 되기때문에 잘 보고 써야함/이벤트리스너 안에서 this 대신 e.currentTarget 을 쓰면 됨
+    // document.getElementById('버튼').addEventListener('click', (e) => {
+    //     e.currentTarget;
+    // })
+
+    var 오브젝트 = {
+        함수: () => {
+            return this;
+        }
+    }
+    console.log(오브젝트.함수());
+</script>
+
+</html>

@@ -1,0 +1,26 @@
+.main {
+  display: flex;
+  width: 100%;
+  max-width: 800px;
+  margin: auto;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  flex-wrap: wrap;
+}
+
+.box {
+  text-align: center;
+  width: 25%;
+}
+
+@media screen and (max-width: 1200px) {
+  .box {
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .box {
+    width: 100%;
+  }
+}

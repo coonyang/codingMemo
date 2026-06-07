@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="../css/index.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="alert-box" id="bt">
+        <p> 공백 </p>
+    </div>
+    <button id="close">닫기</button>
+    <button onclick="알림창내용('block', '아이디입력하세요')">열기</button>
+    <button onclick="알림창내용('block', '비밀번호입력하세요')">열기</button>
+
+    <script>
+        function 알림창내용(a, b) {
+            document.getElementById('bt').style.display = a;
+            // 클래스명으로 찾고싶으면 항상 [숫자]를 적어야댐 숫자는 클래스중 몇번째 요소인지를 나타냄 여러클래스중복이있을때 0부터 몇번째인지 설정하는거
+            document.getElementsByClassName('alert-box')[0].innerHTML = b;
+        }
+
+        // close 를 click 했을때 function(콜백함수) 코드가 실행됨
+        document.getElementById('close').addEventListener('click', function () {
+            document.getElementById('bt').style.display = 'none'
+        })
+    </script>
+</body>
+
+</html>

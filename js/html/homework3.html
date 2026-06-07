@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function 삼육구게임(a) {
+            if (a % 9 == 0) {
+                console.log('박수');
+            } else if (a % 3 == 0) {
+                console.log('수박');
+            } else {
+                console.log('통과');
+            }
+        }
+
+        삼육구게임();
+
+        function 합격(a, b) {
+            if (isNaN(a) || isNaN(b)) {
+                alert('숫자를 입력해야지');
+            } else if (a < 40 || b < 40) {
+                console.log('불합격');
+            } else if (a + b >= 120) {
+                console.log('합격');
+            }
+            else {
+                console.log('불합격');
+            }
+        }
+        합격(1, 'dasd');
+    </script>
+</body>
+
+</html>

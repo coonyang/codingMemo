@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="../css/index17.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+    <div class="card-background">
+        <div class="card-box">
+            <img src="../img/바이퍼.jpg">
+        </div>
+        <div class="card-box">
+            <img src="../img/신데렐라.jpg">
+        </div>
+        <div class="card-box">
+            <img src="../img/크라운.jpg">
+        </div>
+    </div>
+    <script>
+        $(window).scroll(function () {
+            var 높이 = $(window).scrollTop();
+
+            for (let i = 0; i < 3; i++) {
+                let start = 650 + (500 * i);
+                let end = start + 500;
+
+                // opacity 계산
+                let y;
+                if (높이 < start) {
+                    y = 1;
+                } else if (높이 > end) {
+                    y = 0;
+                } else {
+                    y = (-1 / 500) * (높이 - start) + 1;
+                }
+
+                // scale 계산
+                let size;
+                size = (-1 / 5000) * (높이 - start) + (565 / 500);
+
+                // 카드에 스타일 적용
+                $('.card-box').eq(i).css({
+                    'opacity': y,
+                    'transform': `scale(${size})`
+                });
+            }
+        });
+    </script>
+
+</body>
+
+</html>

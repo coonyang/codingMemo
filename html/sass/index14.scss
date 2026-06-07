@@ -1,0 +1,93 @@
+// 아래 watching sass 클릭하면 자동으로 css로 올라감
+// map은 개발자도구 디버깅용임
+// sass쓰는 이유
+
+// reset.scss에 있는 파일을 컴파일 해라
+// 변환할 필요없는 파일앞에 _ 를 붙이면 css 파일이 생성안됨
+// 다른파일의 $변수 도 가져올수있음 대신 경로를 찍어야함 ( 파일명.$변수 )
+@use "reset";
+
+// 어려운 단어 기억해야할 때 변수문법을 쓴다. $를 쓰고 작명을 넣고 지정함. 변수만 바꾸면 전부다 바뀌니 편함.
+$메인칼라: #2a4cb2;
+$서브칼라: #eee;
+$기본사이즈: 16px;
+
+.background {
+  background-color: $메인칼라;
+  //   사칙연산 가능 (단 같은 단위만 가능)
+  font-size: $기본사이즈 + 2;
+}
+
+.box {
+  color: $서브칼라;
+  font-size: $기본사이즈 - 2;
+}
+
+// scss 와 sass 차이
+// sass는 괄호 필요없음 근데 보통 scss가 더 편함
+
+.main-bg h4 {
+  font-size: 16px;
+}
+.main-bg button {
+  color: red;
+}
+
+// 위 코드와 아래 코드는 같음 (nesting문법)
+
+.main-bg {
+  h4 {
+    font-size: 16px;
+  }
+  button {
+    color: red;
+  }
+}
+
+// 중복되는 코드들을 변수로 지정해버림 (extend문법) 클래스 복사
+// % = 임시클래스, 단독으로 컴파일되지 않음
+%btn {
+  width: 100px;
+  height: 100px;
+  padding: 20px;
+}
+
+// 원래 클래스를 가져다가 붙여도됨 (.btn이 있다면 넣어도댐)
+.btn-green {
+  @extend %btn;
+  color: green;
+}
+.btn-red {
+  width: 100px;
+  height: 100px;
+  padding: 20px;
+  color: red;
+}
+.btn-blue {
+  width: 100px;
+  height: 100px;
+  padding: 20px;
+  color: blue;
+}
+
+// @mixin 문법
+// @include 작명()을 하면 작명안에있는 코드가 복붙이됨 작명(변수) 에서 변수에 값을 넣으면 구멍자리에 괄호안의 값이 들어감
+
+@mixin 작명($변수, $변수2, $변수3, $변수4) {
+  font-size: $변수;
+  letter-spacing: $변수2;
+  #{$변수3}: red;
+  color: $변수4;
+}
+
+h2 {
+  @include 작명(40px, 1px, color, red);
+}
+h3 {
+  font-size: 20px;
+  letter-spacing: -1px;
+}
+h4 {
+  font-size: 10px;
+  letter-spacing: -1px;
+}

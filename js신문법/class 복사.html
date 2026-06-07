@@ -1,0 +1,30 @@
+<script>
+
+    class 유저 {
+        constructor(id) {
+            this.id = id
+            this.email = 'test'
+        }
+        sayHi() {
+            console.log('ㅎㅇ')
+        }
+    }
+
+    // 유저 콘스트럭터 내용을 복사해주는 extends
+    class 셀러유저 extends 유저 {
+        constructor(id) {
+            super(id) // 복사해온 내용 // 무조건 추가해야 정상작동함
+            this.company = 'samsung'
+        }
+        sayHi2() { // 부모 클래스의 프로토타입도 가져올수 있음
+            super.sayHi()
+        }
+    }
+
+    var user = new 셀러유저('Kim');
+    console.log(user)
+    user.sayHi()
+    user.sayHi2()
+
+
+</script>

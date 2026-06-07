@@ -1,0 +1,14 @@
+<script>
+
+    var user = {
+        name: 'kim',
+        age: { value: 20 }
+    };
+
+    console.log(user.age?.value) // ? = 왼쪽이 null 이나 언디파인드면 오른쪽을 실행해주지 않고 언디파인드를 남김
+
+    // 오브젝트 자료를 안전하게 뽑고 싶을때 사용
+
+    console.log(undefined ?? '으잉') // ?? = 왼쪽이 언디파인드나 null이면 오른쪽을 실행해줌
+
+</script>

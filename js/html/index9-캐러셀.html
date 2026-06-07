@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="../css/index9.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div style="overflow: hidden;">
+        <div class="slide-container">
+            <div class="slide-box">
+                <img src="../img/바이퍼.jpg" draggable="false">
+            </div>
+            <div class="slide-box">
+                <img src="../img/신데렐라.jpg">
+            </div>
+            <div class="slide-box">
+                <img src="../img/크라운.jpg">
+            </div>
+        </div>
+    </div>
+    <button class="slide-back">이전</button>
+    <button class="slide-1">1</button>
+    <button class="slide-2">2</button>
+    <button class="slide-3">3</button>
+    <button class="slide-next">다음</button>
+
+    <script>
+        var i = 0;
+        document.querySelector('.slide-back').addEventListener('click', function () {
+            if (i < 0) {
+                i += 100;
+                document.querySelector('.slide-container').style.transform = 'translateX(' + i + 'vw)';
+            }
+        })
+        document.querySelector('.slide-1').addEventListener('click', function () {
+            document.querySelector('.slide-container').style.transform = 'translateX(0vw)';
+            i = 0;
+        })
+        document.querySelector('.slide-2').addEventListener('click', function () {
+            document.querySelector('.slide-container').style.transform = 'translateX(-100vw)';
+            i = -100;
+        })
+        document.querySelector('.slide-3').addEventListener('click', function () {
+            document.querySelector('.slide-container').style.transform = 'translateX(-200vw)';
+            i = -200;
+        })
+        document.querySelector('.slide-next').addEventListener('click', function () {
+            if (i > -200) {
+                i -= 100;
+                document.querySelector('.slide-container').style.transform = 'translateX(' + i + 'vw)';
+            }
+        })
+
+        // 마우스 드래그 이벤트
+        // mousemove(e.clientX = 현재 마우스 위치) mouseup mousedown click
+        // $('.slide-box').eq(0).on('mousemove', function (e) {
+        // console.log(e.clientX)
+        // })
+        var 시작좌표 = 0;
+        var 누름 = false;
+        //마우스를 눌렀을때
+        $('.slide-box').eq(0).on('mousedown', function (e) {
+            시작좌표 = e.clientX;
+            누름 = true;
+        })
+        //마우스를 뗐을때
+        $('.slide-box').eq(0).on('mouseup', function (e) {
+            누름 = false;
+
+            if (e.clientX - 시작좌표 < -100) {
+                $('.slide-container').css('transition', 'all 0.5s').css('transform', 'translateX(-100vw)')
+                i = -100;
+            } else {
+                $('.slide-container').css('transition', 'all 0.5s').css('transform', 'translateX(0vw)')
+                i = 0;
+            }
+            setTimeout(() => {
+                $('slide-container').css('transition', 'none')
+            }, 500)
+
+        })
+        // 드래그한 거리
+        $('.slide-box').eq(0).on('mousemove', function (e) {
+            if (누름 == true) {
+                $('.slide-container').css('transform', `translateX(${e.clientX - 시작좌표}px)`)
+            }
+        })
+
+        // 핸드폰 버전으로 하려면 이벤트리스너를 touchstart같은 터치리스너로 바꾸고 e.touches[0].clientX로 바꿔야함
+
+    </script>
+
+</body>
+
+</html>

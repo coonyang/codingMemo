@@ -1,0 +1,66 @@
+.btn {
+  padding: 15px;
+  font-size: 20px;
+  border: none;
+  border-radius: 10px;
+  background-color: coral;
+  color: white;
+  cursor: pointer;
+}
+/* 마우스를 올린상태 */
+.btn:hover {
+  background-color: cornflowerblue;
+}
+/* 마우스 클릭 후 */
+.btn:focus {
+  background-color: gray;
+}
+/* 마우스 누른 상태 */
+.btn:active {
+  background-color: black;
+}
+/* 무조건 호포엑 순서로 넣어야됨 */
+
+.test {
+  font-size: 20px;
+}
+
+.test:focus {
+  border: 5px solid red;
+}
+
+.link {
+  text-decoration: none;
+}
+
+.link:link {
+  color: blueviolet;
+}
+
+.link:visited {
+  color: blue;
+}
+/* 유틸리티 클래스 미리만들어놓고 클래스명만 붙이면 됨 */
+.f-small {
+  font-size: 12px;
+}
+.f-mid {
+  font-size: 16px;
+}
+.f-lg {
+  font-size: 20px;
+}
+
+.b {
+  padding: 15px;
+  border: none;
+  cursor: pointer;
+}
+
+.red {
+  background-color: red;
+}
+
+.blue {
+  background-color: blue;
+}

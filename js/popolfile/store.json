@@ -1,0 +1,32 @@
+{
+  "products": [
+    {
+      "id": 0,
+      "title": "바이퍼",
+      "brand": "테트라",
+      "photo": "../img/바이퍼.jpg",
+      "price": 10000
+    },
+    {
+      "id": 1,
+      "title": "신데렐라",
+      "brand": "필그림",
+      "photo": "../img/신데렐라.jpg",
+      "price": 20000
+    },
+    {
+      "id": 2,
+      "title": "크라운",
+      "brand": "필그림",
+      "photo": "../img/크라운.jpg",
+      "price": 30000
+    },
+    {
+      "id": 3,
+      "title": "흑련",
+      "brand": "필그림",
+      "photo": "../img/흑련.jpg",
+      "price": 40000
+    }
+  ]
+}

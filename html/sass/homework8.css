@@ -1,0 +1,17 @@
+.btn-green, .btn-blue, .btn-red {
+  width: 200px;
+  height: 200px;
+  padding: 20px;
+}
+
+.btn-red {
+  background-color: red;
+}
+
+.btn-blue {
+  background-color: blue;
+}
+
+.btn-green {
+  background-color: green;
+}/*# sourceMappingURL=homework8.css.map */

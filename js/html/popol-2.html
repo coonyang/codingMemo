@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <link href="../css/popol.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="main-container">
+        <nav class="main-nav">
+            <div class="nav-logo">NIKKE</div>
+            <div class="nav-menu">Home</div>
+            <div class="nav-menu">Store</div>
+            <div class="nav-menu">Help</div>
+        </nav>
+        <input type="text" placeholder="검색어 입력" id="search">
+        <div style="clear: both;"></div>
+        <div class="card-box">
+            <!-- <div class="main-card">
+                <img src="../img/바이퍼.jpg">
+                <h4>바이퍼</h4>
+                <p>테트라</p>
+                <p>가격 : 3000쥬얼</p>
+                <button>담기</button>
+            </div> -->
+        </div>
+        <div style="clear: both;"></div>
+        <div class="main-cart">
+            <h4>장바구니</h4>
+            <div class="cart-drag">
+                <p style="color: white;">여기로 드래그</p>
+            </div>
+        </div>
+
+        <div class="finalprice">
+            <h4>최종 가격</h4>
+            <P>0원</P>
+            <button id="buy">구매하기</button>
+        </div>
+    </div>
+    <div class="background">
+        <div class="modal">
+
+            <h4>성함</h4>
+            <input type="text" class="form">
+            <h4>연락처</h4>
+            <input type="text" class="form">
+            <button id="open">입력완료</button>
+            <button id="close">닫기</button>
+
+        </div>
+    </div>
+    <canvas id="canvas" width="450" height="550"></canvas>
+    <script>
+        let products = [];
+        let cart = [];
+
+        // json에서 상품정보를 불러오고 원본을 변수에 담에 저장함
+        $.get('../popolfile/store.json').done(function (data) {
+            products = data.products;
+            상품추가(data.products)
+        })
+
+        // 상품정보를 카드에 담아 출력
+        function 상품추가(data) {
+            data.forEach(function (a) {
+                var card = ` <div class="main-card" draggable="true" data-id=${a.id}>
+                    <img src="${a.photo}">
+                    <h4>${a.title}</h4>
+                    <p>${a.brand}</p>
+                    <p>가격 : ${a.price}</p>
+                    <button class="btn" data-id="${a.id}">담기</button>
+                </div>`
+                $('.card-box').append(card);
+            })
+        }
+
+        // 특정 단어를 검색했을때 그 상품 정보만 나오게함
+        $('#search').on('input', function () {
+            // 1. 검색창의 벨류 = 검색한 내용 을 변수에 저장
+            var 검색 = $('#search').val()
+            // 2. products 배열에서 title이나 brand에 검색어가 포함된 항목만 골라냄
+            var newdata = products.filter(function (a) {
+                // a = products의 내용 하나하나
+                // filter는 조건이 true인 것을 새 배열로 담아줌 includes는 검색어가 포함이면 true를 반환
+                return a.title.includes(검색) || a.brand.includes(검색)
+            })
+
+            // 카드박스내용을 비우고 검색으로 가져온 상품카드를 추가
+            $('.card-box').html('')
+            상품추가(newdata)
+
+            // 카드박스의 모든 제목을 반복문으로 찾음
+            // 제이쿼리식 forEach 반복문은 (i, a)임, 원래 forEach랑 반대
+            // html 요소 = h4
+            $('.card-box h4').each(function (i, html요소) {
+                let title = html요소.innerHTML
+                title = title.replace(검색, `<span style="background : yellow">${검색}</span>`)
+
+                html요소.innerHTML = title;
+            })
+        })
+
+        // 담기 버튼을 누르면 장바구니 안에 상품이 담김
+        $('.card-box').on('click', '.btn', function (e) {
+            // .dataset.~~ <ex).dataset.id=해당코드의id> 원하는 값을 가져올수 있음
+            // e.target의 데이타 아이디
+            let card = e.target.dataset.id
+
+            // findIndex는 조건에 맞는 요소의 인데스번호를 찾아주고 없다면 -1을 반환
+            // a = cart 안의 상품
+            // a의 id가 구매버튼을 누른 상품과 같지 않다면 -1를 반환해줌
+            let index = cart.findIndex((a) => { return a.id == card })
+
+            if (index == -1) {
+                // find는 조건에 맞는 첫번째 요소를 찾아줌
+                // card(현재 구매버튼을 누른 상품의 id) == a.id(카트 안의 상품들의 id) 인 요소를 반환 
+                let 현재상품 = products.find((a) => { return a.id == card })
+                // json에 count 라는 항목 추가
+                현재상품.count = 1;
+                cart.push(현재상품);
+            } else {
+                // 구매버튼누른 상품이 카트안에 있다면 카운트만 추가해줌
+                cart[index].count++;
+            }
+
+            // 장바구니 안에 넣기
+            // 카트안을 한번 비워줌
+            $('.cart-drag').html('')
+            cart.forEach(function (a, i) {
+                // 버튼을 빼고 개수인풋을 추가
+                $('.cart-drag').append(` <div class="main-card">
+                    <img src="${a.photo}">
+                    <h4>${a.title}</h4>
+                    <p>${a.brand}</p>
+                    <p>가격 : ${a.price}</p>
+                    <input type="number" value="${a.count}" class="count">
+                </div>`)
+            })
+
+
+            // 최종 가격
+            가격계산()
+            function 가격계산(a) {
+                let 합계 = 0;
+                // cart 안에 있는 price 를 꺼냄
+                cart.forEach((a, i) => {
+                    const count = $('.count').eq(i).val();
+                    합계 += a.price * (parseInt(count) || 0);
+                })
+
+                $('.finalprice p').text(`${합계}원`)
+            }
+            // 인풋이 변경될때 다시 가격 계산
+            // this = 이벤트가 일어난 요소 그 자체
+            $('.cart-drag').on('input', '.count', function () {
+                // count에 이벤트가 일어난 벨류값을 저장
+                let count = parseInt($(this).val())
+                가격계산()
+                // 벨류값이 0일경우 0으로 바뀐 메인카드를 지움
+                // closest = 해당 요소의 가장 가까운 main-card 부모를 찾아줌
+                if (count == 0) {
+                    $(this).closest('.main-card').remove();
+                }
+            })
+        })
+
+        // 카드 박스 내부의 '.main-card' 요소에서 드래그 시작 시 이벤트 핸들러 등록
+        $('.card-box').on('dragstart', '.main-card', function (e) {
+
+            // 드래그 이벤트의 dataTransfer 객체에 'id'라는 키로 해당 요소의 data-id 속성값 저장
+            e.originalEvent.dataTransfer.setData('id', e.target.dataset.id)
+        });
+
+        // '.cart-drag' 요소 위로 드래그 오버 시 기본 브라우저 동작(막기) 방지
+        $('.cart-drag').on('dragover', function (e) {
+            e.preventDefault();
+        });
+
+        // '.cart-drag' 요소에 드롭 발생 시 이벤트 핸들러
+        $('.cart-drag').on('drop', function (e) {
+
+            // 드래그한 요소에서 전달된 'id' 데이터를 productId 변수에 저장
+            let productId = e.originalEvent.dataTransfer.getData('id');
+
+            let 현재상품 = products.find((a) => { return a.id == productId })
+            let index = cart.findIndex((a) => { return a.id == productId })
+
+
+            if (index == -1) {
+                현재상품.count = 1;
+                cart.push(현재상품);
+            } else {
+                cart[index].count++;
+            }
+
+            $('.cart-drag').html('')
+
+            cart.forEach((a, i) => {
+                $('.cart-drag').append(` <div class="main-card">
+                    <img src="${a.photo}">
+                    <h4>${a.title}</h4>
+                    <p>${a.brand}</p>
+                    <p>가격 : ${a.price}</p>
+                    <input type="number" value="${a.count}" class="count">
+                </div>`)
+            })
+
+
+            가격계산();
+            function 가격계산(a) {
+                let 합계 = 0;
+                // cart 안에 있는 price 를 꺼냄
+                cart.forEach((a, i) => {
+                    const count = $('.count').eq(i).val();
+                    합계 += a.price * (parseInt(count) || 0);
+                })
+
+                $('.finalprice p').text(`${합계}원`)
+            }
+            $('.cart-drag').on('input', '.count', function () {
+
+                let count = parseInt($(this).val())
+                가격계산()
+
+                if (count == 0) {
+                    $(this).closest('.main-card').remove();
+                }
+            })
+        });
+
+        document.querySelector('#buy').addEventListener('click', function () {
+            document.querySelector('.background').classList.add('see')
+            document.querySelector('.modal').classList.add('see')
+        })
+        document.querySelector('#close').addEventListener('click', function () {
+            document.querySelector('.background').classList.remove('see')
+            document.querySelector('.modal').classList.remove('see')
+        })
+        $('#open').on('click', function (e) {
+            if (document.querySelectorAll('.form')[0].value == '') {
+                alert('이름 안적었잖아 임마')
+                e.preventDefault();
+            }
+            if (document.querySelectorAll('.form')[1].value == '') {
+                alert('번호 안적었잖아 임마')
+                e.preventDefault();
+            }
+        })
+
+        let 성함 = '';
+        let 연락처 = '';
+
+        $('.form').eq(0).on('input', function () {
+            성함 = $('.form').eq(0).val()
+        })
+        $('.form').eq(1).on('input', function () {
+            연락처 = $('.form').eq(1).val()
+        })
+
+        $('#open').click(function () {
+            document.querySelector('.modal').classList.remove('see')
+            document.querySelector('.background').classList.remove('see')
+            var canvas = document.getElementById('canvas');
+            var c = canvas.getContext('2d');
+            c.font = '15px Arial'
+            c.fillText('구매자 : ' + 성함, 20, 30);
+            c.fillText('연락처 : ' + 연락처, 20, 60);
+            c.fillText($('.finalprice p').html(), 20, 90)
+        })
+    </script>
+</body>
+
+</html>

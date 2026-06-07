@@ -1,0 +1,19 @@
+@font-face {
+  font-family: "폰트";
+  src: url(../font/NanumSquareAcB.woff);
+}
+/* delius 폰트가 없다면 폰트 폰트를 적용 */
+body {
+  margin: 0px;
+  font-family: "Delius", "폰트";
+  font-weight: 900;
+}
+/* 폰트를 부드럽게 처리하려면 회전시켜야함 */
+p,
+h4,
+h3,
+h2,
+h1,
+span {
+  transform: rotate(0.03deg);
+}

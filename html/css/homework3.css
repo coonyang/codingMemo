@@ -1,0 +1,47 @@
+.main {
+  width: 740px;
+  height: 600px;
+  background-color: antiquewhite;
+  padding: 1px;
+}
+
+.box {
+  margin-left: 40px;
+  margin-top: 40px;
+  color: burlywood;
+}
+
+td,
+tr {
+  border: 1px solid black;
+  padding: 10px;
+}
+
+table {
+  border-collapse: collapse;
+  margin-left: 40px;
+}
+
+.B {
+  float: right;
+  margin-right: 75px;
+  padding: 20px;
+  border-width: 0px;
+  border-radius: 5px;
+  background-color: chocolate;
+  color: white;
+}
+
+td {
+  border: none;
+}
+
+tr {
+  border-color: antiquewhite;
+  background-color: white;
+}
+table {
+  border-collapse: collapse;
+  border-radius: 10px;
+  overflow: hidden;
+}

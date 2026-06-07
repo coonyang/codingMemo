@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var 출석부 = ['흥민', '영희', '철수', '재석'];
+
+        function 이름찾기(name) {
+            for (let i = 0; i < 출석부.length; i++) {
+                if (name == 출석부[i]) {
+                    console.log('있어요');
+                }
+            }
+        }
+        이름찾기('철수');
+
+        for (let l = 2; l < 10; l++) {
+            for (let i = 1; i < 10; i++) {
+                a = l * i
+                console.log(a);
+            }
+        }
+
+        function 함수(arr, b) {
+            var a = 0;
+            for (let i = 0; i < arr.length; i++) {
+                a = a + arr[i];
+            }
+            if (a / arr.length < b) {
+                console.log('평균보다 ' + (b - a / arr.length) + ' 만큼 올랐네요');
+            } else if (a / arr.length > b) {
+                console.log('평균보다 ' + (a / arr.length - b) + ' 만큼 낮네요');
+            } else {
+                console.log('평균이네요');
+            }
+        }
+        함수([10, 20, 30, 40, 50], 40);
+        함수([20, 40, 60], 20);
+        함수([20, 20, 20], 20);
+    </script>
+</body>
+
+</html>

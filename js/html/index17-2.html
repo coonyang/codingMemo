@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="../css/index17.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+    <div class="card-background">
+        <div class="card-box">
+            <img src="../img/바이퍼.jpg">
+        </div>
+        <div class="card-box">
+            <img src="../img/신데렐라.jpg">
+        </div>
+        <div class="card-box">
+            <img src="../img/크라운.jpg">
+        </div>
+    </div>
+
+    <script>
+        // 화면이 스크롤될때마다 이 함수를 실행해주세요
+        $(window).scroll(function () {
+            // 스크롤 위치 측정
+            var 높이 = $(window).scrollTop();
+            console.log(높이);
+
+            // 650~1150까지 스크롤바를 내리면
+            // 첫째카드 opacity를 1~0으로 서서히 변경
+            // 1~0으로 서서히 변경되는 변수
+            var y;
+            y = (-1 / 500) * 높이 + 115 / 50;
+            // 1 = a * 650 + b
+            // 0 = a * 1150 + b;
+            // a = -1 / 500;
+            // b = 115 / 50;
+            $('.card-box').eq(0).css('opacity', y);
+
+            var size;
+            size = (-1 / 5000) * 높이 + (565 / 500);
+            // 1 = a * 650 + b;
+            // 0.9 = a * 1150 + b;
+            $('.card-box').eq(0).css('transform', `scale(${size})`)
+        })
+
+    </script>
+</body>
+
+</html>

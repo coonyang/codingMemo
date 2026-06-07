@@ -1,0 +1,60 @@
+<script>
+    // 내용물을 밖으로 빼내고 싶을때 붙임
+    // 중괄호 대괄호 소괄호 안에서만 쓸 수 있음
+
+    // 1.array에 붙이면 대괄호를 제거해줌
+    var 어레이 = ['hello', 'world'];
+    console.log(어레이)
+    console.log(...어레이)
+
+    // 2. 문자에 붙이면 문자를 펼쳐줌
+    var 문자 = 'hello'
+    console.log(문자)
+    console.log(문자[2]) // 문자도 인덱싱 가능
+    console.log(...문자)
+
+    // 사용처
+    // 1. 어레이 합치기/복사
+    var a = [1, 2, 3]
+    var b = [4, 5]
+
+    var c = [...a, ...b]
+    console.log(c)
+
+    var d = [1, 2, 3]
+    var e = [...d]
+
+    d[3] = 4
+    console.log(d)
+    console.log(e)
+
+    // 2. 오브젝트 합치기/복사
+    var o1 = { a: 1, b: 2 }
+    var o2 = { ...o1, c: 3 }
+    var o3 = { a: 2, ...o1 } // 값 중복이 일어나면 뒤에 값으로 됨
+    console.log(o2)
+    console.log(o3)
+
+    // 3. 함수 파라미터 넣을 때
+    function 더하기(a, b, c) {
+        console.log(a + b + c)
+    }
+
+    var plus = [10, 20, 30]
+    더하기(plus[0], plus[1], plus[2]) // 주먹구구식
+    더하기.apply(undefined, plus) // 옛날 방식
+    더하기(...plus) // 요즘 방식
+
+    // apply/call : 함수를 옮겨서 실행해줌
+    var person = {
+        인사: function () {
+            console.log(this.name + '안녕')
+        }
+    }
+    var person2 = {
+        name: '손흥민'
+    }
+    person.인사()
+    person.인사.apply(person2, [파라미터])
+    person.인사.call(person2, 파라미터) // call은 기능은 똑같지만 파라미터를 넣을때 어레이로 안넣어도됨
+</script>

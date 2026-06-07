@@ -1,0 +1,163 @@
+body {
+  margin: 0;
+}
+.main-container {
+  background-color: antiquewhite;
+  height: 100%;
+}
+.main-nav {
+  background-color: black;
+  height: 90px;
+  width: 100%;
+  margin: 0;
+  color: white;
+  display: flex;
+}
+.nav-logo {
+  font-size: 30px;
+  line-height: 90px;
+  margin-left: 20px;
+  margin-right: 10px;
+}
+.nav-menu {
+  font-size: 25px;
+  margin-left: 20px;
+  line-height: 90px;
+}
+input {
+  width: 200px;
+  height: 30px;
+  font-size: 20px;
+  margin-top: 20px;
+  margin-left: 20px;
+}
+.main-card {
+  float: left;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 10px;
+  margin-left: 20px;
+  width: 20%;
+  height: 300px;
+  background-color: white;
+  border-radius: 5px;
+}
+.main-card img {
+  display: block;
+  margin: 10px auto 5px auto;
+  width: 80%;
+  height: 40%;
+  max-height: 120px;
+  object-fit: cover;
+}
+.main-card h4 {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 25px;
+}
+.main-card p {
+  margin-top: 0;
+  margin-bottom: 10px;
+  color: black;
+}
+.main-card button {
+  background-color: black;
+  color: white;
+  border-radius: 5px;
+  width: 50px;
+}
+.main-card h4,
+.main-card p,
+.main-card button {
+  margin-left: 30px;
+}
+.main-cart {
+  width: 96.5%;
+  background-color: white;
+  margin: 10px auto 0 auto;
+  height: 410px;
+  border-radius: 5px;
+  padding-top: 1px;
+}
+.main-cart h4 {
+  font-size: 20px;
+  margin-left: 30px;
+  margin-top: 20px;
+  margin-bottom: 0px;
+  color: black;
+}
+.cart-drag {
+  background-color: black;
+  color: white;
+  width: 95%;
+  margin: 0 auto 0 auto;
+  height: 330px;
+  border-radius: 5px;
+}
+.cart-drag p {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  color: black;
+}
+.finalprice {
+  margin-left: 10px;
+  margin-bottom: 0px;
+  padding: 10px;
+}
+.finalprice button {
+  font-size: 20px;
+  border: none;
+  background-color: black;
+  color: white;
+}
+.main-card input {
+  width: 50px;
+  margin-top: 0;
+  margin-bottom: 30px;
+  margin-left: 30px;
+}
+.cart-drag .main-card {
+  background-color: white;
+}
+.modal h4 {
+  margin-left: 20px;
+  margin-bottom: 0px;
+}
+.modal input {
+  margin-top: 0;
+}
+.modal button {
+  display: flex;
+  margin-top: 5px;
+  margin-left: 20px;
+}
+.modal {
+  width: 30%;
+  height: 250px;
+  position: fixed;
+  top: 40%;
+  left: 40%;
+  background-color: white;
+  z-index: 200px;
+  visibility: hidden;
+  transition: all 0.5s;
+}
+.background {
+  background: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+  z-index: 100px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  visibility: hidden;
+  transition: all 0.5s;
+  opacity: 0;
+}
+.see {
+  opacity: 1;
+  visibility: visible;
+}

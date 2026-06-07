@@ -1,0 +1,34 @@
+.main {
+  width: 100%;
+  height: 100%;
+  background-color: antiquewhite;
+}
+.ani-text {
+  text-align: center;
+}
+.ani-text:hover {
+  animation-name: 작명;
+  animation-duration: 1s;
+}
+
+/* 0% 진행상태일때 상태, 50% 진행상태일때 상태 */
+/* 브라우저가 그림그리는 순서
+1. 랜더 트리 만들기
+2. 레이아웃 잡기 (margin padding 등)
+3. 색칠하기 (background-color 등)
+4. composite 처리 (transform 등)
+> 트랜스폼을 사용해야 컴퓨터가 처리가 빨라서 성능향상됨 */
+@keyframes 작명 {
+  0% {
+    transform: translateX(0px);
+  }
+  50% {
+    transform: translateX(-100px);
+  }
+  75% {
+    transform: translateX(100px);
+  }
+  100% {
+    transform: translateX(0px);
+  }
+}

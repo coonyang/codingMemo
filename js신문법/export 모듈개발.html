@@ -1,0 +1,18 @@
+<script src="library.js"> // 다른 파일에서 가져오는건 이게 제일 호환성이 좋음
+
+
+
+
+
+
+</script>
+<script type="module"> // import, export 를 이용한 모듈식 개발
+
+    // export default 먼저 앞에 둬야 오류안남 // as 는 export 변수명 변경 // 모든 내용을 import 해오겠다 > 변수 대신 * as 작명 > 작명.a (default로 가져온건 앞에 따로 붙여줘야함)
+    import 변수, { a, b as 바꾼이름 } from '/library.js' // import 가져올거 from '경로' // 모든 내용을 가져오지 않고 a 라는 변수만 가져옴
+
+    console.log(a);
+    console.log(바꾼이름)
+    console.log(변수)
+
+</script>

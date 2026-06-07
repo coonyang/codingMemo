@@ -1,0 +1,46 @@
+<script>
+
+    function 기계(이름) {
+        this.name = 이름;
+        this.age = 15;
+        this.sayHi = function () {
+            console.log('안녕하세요' + this.name + '입니다')
+        }
+    }
+    기계.prototype.gender = '남' // gender 라는 프로토타입에 남 을 저장
+
+    var 학생1 = new 기계('Park');
+    var 학생2 = new 기계('Kim');
+
+    console.log(학생1.gender) // 남
+
+    var arr = [1, 2, 3]
+    var arr = new Array(1, 2, 3)
+
+    console.log(학생1.__proto__) // 프로토타입 보는법 // 그냥 학생1 콘솔창 들어가도 있음
+
+    var obj = {}
+    var proto = {
+        sayHi() {
+            console.log('안녕')
+        }
+    }
+
+    Object.setPrototypeOf(obj, proto) // obj 에 프로토타입 주입
+    obj.sayHi()
+
+    // 더 간단하게 하는 법
+    var 부모 = { name: 'kim' }
+    var 자식 = Object.create(부모)
+    자식.age = 20
+    var 손자 = Object.create(자식)
+    console.log(자식.name) // 자식에 아무것도 안넣었지만 부모프로토타입이 주입됨
+    console.log(손자.name, 손자.age)
+
+
+
+
+
+
+
+</script>

@@ -1,0 +1,32 @@
+<script>
+    // 심볼의 용도 : obj의 비밀스런 key 값 저장
+    // 심볼의 특징 : 설명이 같다고 같은 심볼이 아님
+
+    var 심볼 = Symbol('설명');
+    var 심볼2 = Symbol('설명')
+    심볼 === 심볼2 // false
+
+    // 심볼의 특징2 : 전역 심볼을 만들수있음
+    // 전역으로 만들면 위에 같은 심볼이 있다면 복사를해줌
+    var 심볼3 = Symbol.for('설명')
+    var 심볼4 = Symbol.for('설명')
+    심볼3 === 심볼4 // true
+
+    // 심볼의 특징3 : 기본 내장 심볼이 있음
+    var 어레이 = [2, 3, 4];
+    어레이[Symbol.iterator]; // array에 집어넣는 기본 심볼 보는법
+
+    var weihgt = Symbol('내 시크릿 몸무게')
+    var 키 = Symbol('내 키')
+
+    var person = { name: 'kim', [심볼이렇게도저장됨]: 100 }
+    person.weihgt = 50;
+    person[weihgt] = 60;
+    person[키] = 180;
+
+    for (let key in person) {
+        console.log(person[key])
+    } // kim , 100 // 심볼에 저장한 값은 안나옴
+
+
+</script>

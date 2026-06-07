@@ -1,0 +1,30 @@
+.pseudo::first-letter {
+  color: red;
+  font-size: 30px;
+}
+
+.pseudo::after {
+  content: "쌀숭이년";
+}
+
+.pseudo::before {
+  content: "모작작";
+}
+
+/* float를 쓰고 clear both를 디브박스로 안줘도 css에서 해결가능  */
+.pseudo::after {
+  content: "";
+  display: block;
+  clear: both;
+  float: none;
+}
+
+.input-file::file-selector-button {
+  background-color: antiquewhite;
+  border: none;
+  padding: 20px;
+}
+
+.input-file::file-selector-button:hover {
+  background-color: green;
+}

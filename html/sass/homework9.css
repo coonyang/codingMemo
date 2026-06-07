@@ -1,0 +1,65 @@
+body {
+  margin: 0;
+}
+
+div {
+  box-sizing: border-box;
+}
+
+.main ul {
+  list-style-type: none;
+}
+.main li {
+  width: 300px;
+  height: 50px;
+  border: 1px solid black;
+  border-bottom: 0;
+}
+.main p {
+  margin-left: 30px;
+}
+.main .active:hover {
+  color: white;
+  background-color: dodgerblue;
+}
+
+span {
+  font-size: 20px;
+}
+
+.main-box {
+  margin-top: 20px;
+  margin-left: 20px;
+}
+
+.box-b, .box-g, .box-y {
+  width: 500px;
+  height: 50px;
+  border-radius: 5px;
+}
+
+.box-y {
+  background-color: yellow;
+  color: yellowgreen;
+}
+
+.box-g {
+  background-color: green;
+  color: aqua;
+}
+
+.box-b {
+  background-color: blue;
+  color: white;
+}
+
+.box {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  border: 1px solid black;
+}
+
+.box p {
+  margin-left: 30px;
+}/*# sourceMappingURL=homework9.css.map */

@@ -1,0 +1,156 @@
+body {
+  margin: 0;
+}
+div {
+  box-sizing: border-box;
+}
+h1 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 22px;
+}
+
+.main {
+  max-width: 1500px;
+}
+
+.main-head {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(#00a5ff, #6a5acd);
+  padding: 0px;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+}
+
+.main-head_text {
+  margin-left: 80px;
+  margin-top: 50px;
+  color: white;
+}
+
+.main-button {
+  cursor: pointer;
+  background-color: #3f3f3f;
+  color: white;
+  padding: 15px;
+  border: none;
+  border-radius: 5px;
+}
+
+.main-head button {
+  margin-left: 80px;
+  max-width: 100px;
+}
+
+.main-img {
+  width: 300px;
+  margin-top: 100px;
+  margin-right: 100px;
+}
+
+.main-mid {
+  height: 200px;
+  padding: 1px;
+  text-align: center;
+}
+
+.main-bottom {
+  background-color: #6a5acd;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  padding: 1px;
+  color: white;
+}
+
+.main-bottom_service {
+  display: flex;
+  justify-content: center;
+}
+
+.bottom-service_img {
+  width: 100px;
+  height: 40%;
+  border-radius: 100%;
+  padding: 5px;
+  margin-left: 50px;
+  margin-right: 50px;
+  margin-top: 20px;
+}
+
+.bottom {
+  width: 100%;
+  height: 100%;
+  max-width: 1500px;
+}
+
+.bottom-img {
+  padding: 30px;
+  width: 100%;
+  height: 700px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.box {
+  width: 50%;
+  height: 50%;
+  position: relative;
+  overflow: hidden;
+}
+
+.box img {
+  width: 100%;
+  height: 100%;
+}
+
+.bottom-mid {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.bottom-mid_img {
+  border-radius: 100%;
+  width: 100px;
+  height: 90%;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 0px solid white;
+  transition: 0.5s;
+}
+
+.overlay:hover {
+  border: 30px solid white;
+}
+
+@media screen and (max-width: 800px) {
+  .main-head_text {
+    margin-left: 0;
+  }
+  .main-head button {
+    margin-left: 0;
+  }
+  .main-img {
+    margin-top: 50px;
+    margin-right: 0px;
+  }
+  .main-head {
+    text-align: center;
+    flex-direction: column;
+  }
+
+  .main-bottom_service {
+    display: flex;
+    flex-direction: column;
+  }
+}

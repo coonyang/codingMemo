@@ -1,0 +1,9 @@
+td,
+th {
+  border: 1px solid black;
+}
+
+/* 행사이 간격 붙이기 */
+table {
+  border-collapse: collapse;
+}

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <link href="../css/popol.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="main-container">
+        <nav class="main-nav">
+            <div class="nav-logo">NIKKE</div>
+            <div class="nav-menu">Home</div>
+            <div class="nav-menu">Store</div>
+            <div class="nav-menu">Help</div>
+        </nav>
+        <input type="text" placeholder="검색어 입력" id="search">
+        <div style="clear: both;"></div>
+        <div class="card-box">
+            <!-- <div class="main-card">
+                <img src="../img/바이퍼.jpg">
+                <h4>바이퍼</h4>
+                <p>테트라</p>
+                <p>가격 : 3000쥬얼</p>
+                <button>담기</button>
+            </div> -->
+        </div>
+        <div style="clear: both;"></div>
+        <div class="main-cart">
+            <h4>장바구니</h4>
+            <div class="cart-drag">
+                <p>여기로 드래그</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let products = [];
+        let cart = [];
+
+        $.get('../popolfile/store.json').done(function (data) {
+            products = data.products;
+            상품추가(data.products)
+        })
+
+        function 상품추가(data) {
+            data.forEach(function (a) {
+                var card = ` <div class="main-card">
+            <img src="${a.photo}">
+            <h4>${a.title}</h4>
+            <p>${a.brand}</p>
+            <p>가격 : ${a.price}</p>
+            <button id="btn">담기</button>
+        </div>`
+                $('.card-box').append(card);
+            })
+        }
+
+        $('#search').on('input', function () {
+            let 검색 = $('#search').val();
+
+            let newlist = products.filter((a) => {
+                return a.title.includes(검색) || a.brand.includes(검색);
+            })
+
+            $('.card-box').html('');
+            상품추가(newlist)
+        })
+
+        $('#btn').click(function (e) {
+            let productId = e.target.dataset.id;
+
+            let 몇번째 = cart.findIndex((a) => { return a.id == productId })
+
+            if (몇번째 == -1) {
+                let 현재상품 = products.find((a) => { return a.id == productId });
+                현재상품.count = 1;
+                cart.push(현재상품);
+            } else {
+                cart[몇번째].count++;
+            }
+
+            $('.cart-drag').html('');
+            cart.forEach((a) => {
+                ` <div class="main-card">
+            <img src="${a.photo}">
+            <h4>${a.title}</h4>
+            <p>${a.brand}</p>
+            <p>가격 : ${a.price}</p>
+            <input type="number" value="${a.count}">
+        </div>`
+            })
+        })
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>
