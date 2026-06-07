@@ -1,11 +1,12 @@
 <script>
+    // 프로그램을 조립식으로 만드는 것 = 객체지향
 
     // class 장점 : 비슷한 용도의 함수들을 정리정돈해줌
-    // extends로 상속이 편함
-
+    // class 단점 : 상속이 많아지면 코드 관리가 복잡해짐
     var a = new Date()
 
     Math.pow(2, 4) // 2 의 4 제곱
+    // 2 ** 4 이렇게 표현하는게 더 쉽고 빠름
 
     function 함수() {
         return {
@@ -15,17 +16,7 @@
 
     함수()
 
-    class Healer {
-        constructor(a) {
-            this.ability = a
-        }
-        healSkill() {
-            this.ability.heal()
-        }
-    }
-
-    var a = new Heal()
-    var healer = new Healer(new Heal(a))
+    // 기본 스킬들
 
     class Heal {
         heal() {
@@ -33,7 +24,84 @@
         }
     }
 
-    // class 단점 : 상속이 많아지면 코드 관리가 복잡해짐
+    class AllHeal {
+        allHeal() { console.log('전체힐') }
+    }
 
+    // ================================================
+
+    class Healer {
+        constructor(a) {
+            this.ability = a
+        }
+        healSkill() {
+            // 주입받은 객체에 따라 다르게 동작함
+            // if()에 괄호없는 함수를 넣으면 그 함수 자체를 가리킴
+            if (this.ability.heal) {
+                this.ability.heal()
+            } else if (this.ability.allHeal) {
+                this.ability.allHeal()
+            }
+        }
+    }
+
+    var a = new Heal()
+    var b = new AllHeal()
+
+    var healer1 = new Healer(a)
+    healer1.healSkill(); // 출력 : 힐
+
+    var healer2 = new Healer(b)
+    healer2.healSkill(); // 출력 : 전체힐
+
+    // 2개의 재료를 받게 할 수 있음
+
+    class Healer {
+        // constructor에서 두 개의 재료(a, b)를 받음
+        constructor(a, b) {
+            this.singleAbility = a
+            this.groupAbility = b
+        }
+
+        healSkill() {
+            this.singleAbility.heal()
+        }
+        allHealSkill() {
+            this.groupAbility.allHeal()
+        }
+    }
+
+    var a = new Heal()
+    var b = new AllHeal()
+
+    var healer = new Healer(a, b)
+
+    healer.healSkill();    // 출력: 힐
+    healer.allHealSkill(); // 출력: 전체힐
+
+    // extends로 상속이 편함
+
+    class Healer {
+        constructor(name) {
+            this.name = name;
+            this.hp = 80;
+            this.mp = 150;
+        }
+        // 힐러의 기본 스킬
+        heal() {
+            console.log(`${this.name}의 힐!`)
+        }
+    }
+
+    // extends = 확장
+    class Priest extends Healer {
+        allHeal() {
+            console.log(`${this.name}의 전체 힐!`)
+        }
+    }
+
+    var healer = new Priest("힐러");
+    healer.heal(); // 출력 : 힐러의 힐!
+    healer.allHeal(); // 출력 : 힐러의 전체힐!
 
 </script>
