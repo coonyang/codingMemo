@@ -11,8 +11,14 @@
     <label>제목</label>
     <input type="range">
 
-    <div id="mordor"></div>
-    <custom-input></custom-input>
+    <div id="mordor"></div> <!--여기에 섀도우 돔을 생성-->
+    <custom-input>
+        <!--
+        #shadow-root
+        <label>아이디입력</label>
+        <input>
+        -->
+    </custom-input>
 
     <template id='template1'> <!-- 임시 html 태그 보관함 -->
         <label>아이디입력 </label><input>
@@ -24,23 +30,48 @@
         <!-- 스타일 주는법 : 섀도우 돔 안에 넣어야 다른 라벨태그에 오염이 안됨 -->
     </template>
 
+    <login-input name="아이디"></login-input>
+    <template id="template2">
+        <label></label>
+        <input>
+    </template>
+
     <script>
         document.querySelector('#mordor').attachShadow({ mode: 'open' }) // 섀도우 돔 열어주는 함수
-        document.querySelector('#mordor').shadowRoot.innerHTML = `<p>심연</p>`
+        document.querySelector('#mordor').shadowRoot.innerHTML = `<p>심연</p>` // id가 mordor인 섀도우 돔 안에 <p> 태그를 넣음
 
-        class 클래스 extends HTMLElement {
+        class 클래스 extends HTMLElement { // 새로운 HTML 태그 생성 <custom-input>
             connectedCallback() {
-                let name = this.getAttribute('name');
-                this.attachShadow({ mode: 'open' })
-                this.shadowRoot.append(template1.content.cloneNode(true))
+                let name = this.getAttribute('name'); // 현재 태그의 속성을 가져옴 <custom-input name="이름"> 이면 이름을 가져옴
+                this.attachShadow({ mode: 'open' }) // 현재 커스텀 인풋 안에 섀도우 돔 생성
+                this.shadowRoot.append(template1.content.cloneNode(true)) // template.content = 임시 html 태그 보관함안의 내용 / cloneNode(true) = 복사
 
-                let 라벨 = this.shadowRoot.querySelector('label')
-                라벨.addEventListener('click', function () {
+                let 라벨 = this.shadowRoot.querySelector('label') // 섀도우 돔 안의 label 태그를 찾음
+                라벨.addEventListener('click', function () { // label 클릭시 '클릭'출력
                     console.log('클릭')
                 })
             }
         }
-        customElements.define('custom-input', 클래스);
+        customElements.define('custom-input', 클래스); // custom-input 태그를 만나면 'class 클래스' 사용
+
+        // 응용
+
+        class 로그인 extends HTMLElement {
+            connectedCallback() {
+                let name = this.getAttribute('name');
+                this.attachShadow({ mode: 'open' })
+                this.shadowRoot.append(template2.content.cloneNode(true))
+
+                this.shadowRoot.querySelector('label').textContent = name;
+
+                let 라벨 = this.shadowRoot.querySelector('label')
+                라벨.addEventListener('click', function () {
+                    라벨.style.color = 'blue'
+                })
+            }
+        }
+        customElements.define('login-input', 로그인)
+
     </script>
 
 
