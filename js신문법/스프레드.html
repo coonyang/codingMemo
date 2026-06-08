@@ -19,21 +19,21 @@
     var b = [4, 5]
 
     var c = [...a, ...b]
-    console.log(c)
+    console.log(c) // 1 2 3 4 5
 
     var d = [1, 2, 3]
-    var e = [...d]
+    var e = [...d] // var e = d 로 갔으면 같은 배열을 가리키므로 아래 e 를 찍었을때 1 2 3 4 가 나옴
 
     d[3] = 4
-    console.log(d)
-    console.log(e)
+    console.log(d) // 1 2 3 4
+    console.log(e) // 1 2 3
 
     // 2. 오브젝트 합치기/복사
     var o1 = { a: 1, b: 2 }
     var o2 = { ...o1, c: 3 }
-    var o3 = { a: 2, ...o1 } // 값 중복이 일어나면 뒤에 값으로 됨
+    var o3 = { a: 2, ...o1 } // 값 중복이 일어나면 뒤에 값으로 됨 // {a:1, b:2}
     console.log(o2)
-    console.log(o3)
+    console.log(o3) // 반대로 {...o1, a:2}하면 {a:2,b:2}
 
     // 3. 함수 파라미터 넣을 때
     function 더하기(a, b, c) {
