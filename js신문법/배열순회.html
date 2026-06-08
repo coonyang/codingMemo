@@ -1,0 +1,62 @@
+<script>
+    // map : 배열을 순회하며 새 배열을 만듬
+    var arr = [1, 2, 3]
+    var 결과 = arr.map(function (item) {
+        return item * 2;
+    })
+
+    console.log(결과) // [2, 4, 6]
+
+    var users = ['kim', 'park', 'lee']
+
+    users.map((user) => { `<li>${user}</li>` })
+
+    // filter : 배열에서 조건에 맞는 것만 남김
+    var arr = [1, 2, 3, 4, 5, 6];
+    var 결과 = arr.filter((item) => { item > 3 })
+
+    console.log(결과) // [4, 5, 6]
+
+    // find : 조건에 맞는 첫 번째 값 하나만 찾음
+    var arr = [1, 2, 3, 4, 5, 6];
+    var 결과 = arr.find((x) => { x === 2 })
+
+    console.log(결과)
+
+    var users = [
+        { id: 1, name: 'kim' },
+        { id: 2, name: 'park' },
+        { id: 3, name: 'lee' }
+    ];
+
+    var 결과 = users.find(function (user) {
+        return user.id === 2;
+    });
+
+    console.log(결과); // {id: 2, name: 'park'} 객체만 남김
+    // users.filter(user => user.id === 2) filter로 쓰면 [{id: 2, name: 'park'}] 배열로 반환
+
+    // some : 하나라도 만족하면 ture
+    var arr = [1, 2, 3, 4]
+    var 결과 = arr.some((item) => { item > 3 })
+
+    console.log(결과) // true
+
+    // every : 전부 만족해야 true
+    var arr = [1, 2, 3, 4]
+
+    var 결과 = arr.every(function (item) {
+        return item > 0;
+    });
+
+    console.log(결과) // true
+
+    // reduce : 배열을 하나의 값으로 압축
+    var arr = [1, 2, 3, 4]
+
+    var 결과 = arr.reduce(function (acc, cur) {
+        return acc + cur;
+    }, 0)
+
+    console.log(결과); // 10
+</script>
