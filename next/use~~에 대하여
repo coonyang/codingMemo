@@ -1,18 +1,64 @@
+import { useCallback, useEffect, useState } from "react"
+
 useParams() = 현재 URL의 동적 파라미터를 가져옴
 
 const params = useParams();
 
 console.log(params.id); // /post/123 주소의 123을 출력해줌
 
+// ==========================================================
+
 useRouter() = 페이지 이동, 뒤로가기 등에 사용
 
 const router = useRouter();
 
-router.push("/list");
-router.back();
+router.push("/list"); // 이동
+router.back(); // 뒤로가기
+router.refresh(); // 새로고침
+router.replace("/login"); // 기록 없이 이동
+
+// ==========================================================
 
 useSearchParams() = URL 쿼리스트링 읽기
 
 const searchParams = useSearchParams();
 
 const page = searchParams.get("page"); // ?page=2 에서 2를 가져옴
+
+// ==========================================================
+
+useState() = 상태 저장
+
+const [count, setCount] = useState(0) // set~~으로 상태를 변경함
+
+// ==========================================================
+
+useEffect() = 랜더링 후()실행
+
+useEffect(() => {
+    console.log(실행)
+}, []) // [] 안에 값을 넣으면 값이 변동될때마다 재실행
+
+// ==========================================================
+
+useRef() = 값 저장(렌더링이 발생하지 않음), DOM 접근
+
+const countRef = useRef(0);
+
+countRef.current += 1;
+
+// ==========================================================
+
+useMemo() = 복잡한 계산 결과 캐싱
+
+const result = useMemo(() => {
+  return data.filter((item) => item.age > 20);
+}, [data]);
+
+// ==========================================================
+
+useCallback() = 함수 재생성 방지
+
+const handleClick = useCallback(() => {
+  console.log("클릭");
+}, []);
