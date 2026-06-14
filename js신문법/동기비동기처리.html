@@ -64,4 +64,42 @@
 
     결과출력함수();
 
+    setInterval()
+    // 일정 시간마다 반복 실행
+
+    clearInterval()
+    // 반복 종료
+
+    var timer = setInterval(() => {
+        console.log("실행중");
+    }, 1000);
+
+    // 버튼 클릭 시 종료
+    button.addEventListener("click", () => {
+        clearInterval(timer);
+    });
+
+    // 첫 렌더링 때 실행 후 clearInterval 만나면 종료
+    useEffect(() => {
+        var timer = setInterval(() => {
+            console.log("실행");
+        }, 1000);
+
+        return () => {
+            clearInterval(timer);
+        };
+    }, []);
+
+    // 조건을 넣어서 종료
+    let count = 0;
+
+    var timer = setInterval(() => {
+        count++;
+
+        console.log(count);
+
+        if (count === 5) {
+            clearInterval(timer);
+        }
+    }, 1000);
 </script>
